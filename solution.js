@@ -17,21 +17,31 @@ const groupBy = (arr, groupType) => {
     let result = {}
     let group = []
     // Выделяем основные группы
-    for (let i = 0; i < arr.length; i++) {
-        if (group.indexOf(arr[i][groupType]) === -1) {
-            group.push(arr[i][groupType])
-        }
-    }
+    arr.forEach(el => group.indexOf(el[groupType]) === -1 && group.push(el[groupType]))
     //Создаем для этих групп свойства в объекте и присваиваем им пустой массив
-    for (let j = 0; j < group.length; j++) {
-            let property = group[j]
-            result[property] = []
-    }
+    group.forEach(el => result[el] = [])
     //Заполняем эти массивы нужными данными
-    for (let i = 0; i < arr.length; i++) {
-        result[arr[i][groupType]].push(arr[i])
-    }
+    arr.forEach( el => result[el[groupType]].push(el))
+    console.log(result)
+    return result
+    //НИЖЕ СТАРОЕ РЕШЕНИЕ
+    // Выделяем основные группы
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (group.indexOf(arr[i][groupType]) === -1) {
+    //         group.push(arr[i][groupType])
+    //     }
+    // }
+    //Создаем для этих групп свойства в объекте и присваиваем им пустой массив
+    // for (let j = 0; j < group.length; j++) {
+    //     result[group[j]] = []
+    // }
+    //Заполняем эти массивы нужными данными
+    //Чуть более новый способ заполнения массива
+    // for (let i = 0; i < arr.length; i++) {
+    //     result[arr[i][groupType]].push(arr[i])
+    // }
     // За это отдельно прошу прощения, такой кошмар я обычно не делаю
+    // Заполняем эти массивы нужными данными
     // for (let i = 0; i < arr.length; i++) {
     //     for (let j = 0; j < group.length; j++) {
     //         if (arr[i][groupType] === group[j]) {
@@ -39,8 +49,8 @@ const groupBy = (arr, groupType) => {
     //         }
     //     }
     // }
-    console.log(result)
-    return result
+    // console.log(result)
+    // return result
 }
 
 groupBy(arr, groupType)
