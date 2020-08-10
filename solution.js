@@ -6,13 +6,13 @@ const arr = [
     { branch: 'ford', model: 'explorer', year: '2020' },
     { branch: 'bmw', model: 'x7', year: '2020' },
 ];
-const groupType = 'branch'
+const groupType = 'model'
 
 const groupBy = (arr, groupType) => {
     //прошу прощения за столь грубое решение, ночь без сна из за кашля несколько подпортила решение (
     arr.sort((prev, next) => {
-        if (prev['branch'] < next['branch']) return -1
-        if (prev['branch'] < next['branch']) return 1
+        if (prev[groupType] < next[groupType]) return -1
+        if (prev[groupType] < next[groupType]) return 1
     })
     let result = {}
     let group = []
